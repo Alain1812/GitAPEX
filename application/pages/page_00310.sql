@@ -1,0 +1,131 @@
+prompt --application/pages/page_00310
+begin
+--   Manifest
+--     PAGE: 00310
+--   Manifest End
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2023.10.31'
+,p_release=>'23.2.0'
+,p_default_workspace_id=>4319636551211844
+,p_default_application_id=>110
+,p_default_id_offset=>46157557361540665
+,p_default_owner=>'DEMO_TRANS_WMS'
+);
+wwv_flow_imp_page.create_page(
+ p_id=>310
+,p_name=>'BorrarInforme'
+,p_alias=>'BORRARINFORME'
+,p_page_mode=>'MODAL'
+,p_step_title=>'BorrarInforme'
+,p_autocomplete_on_off=>'OFF'
+,p_page_template_options=>'#DEFAULT#'
+,p_protection_level=>'C'
+,p_page_component_map=>'17'
+,p_last_updated_by=>'US_DEMO_TRANS_WMS'
+,p_last_upd_yyyymmddhh24miss=>'20250420134556'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(79120943911884889)
+,p_plug_name=>'BorrarInforme'
+,p_plug_display_sequence=>10
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(79121137112884891)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_imp.id(79120943911884889)
+,p_button_name=>'Borrar'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#:t-Button--stretch'
+,p_button_template_id=>wwv_flow_imp.id(72019878772750637)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Borrar'
+,p_warn_on_unsaved_changes=>null
+,p_grid_new_row=>'Y'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(79121222593884892)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_imp.id(79120943911884889)
+,p_button_name=>'Cancelar'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#:t-Button--stretch'
+,p_button_template_id=>wwv_flow_imp.id(72019878772750637)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Cancelar'
+,p_warn_on_unsaved_changes=>null
+,p_grid_new_row=>'N'
+,p_grid_new_column=>'Y'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(79121039948884890)
+,p_name=>'P310_ID_INFORME'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_imp.id(79120943911884889)
+,p_prompt=>'Id Informe'
+,p_display_as=>'NATIVE_DISPLAY_ONLY'
+,p_field_template=>wwv_flow_imp.id(72017452909750635)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'VALUE'
+,p_attribute_04=>'Y'
+,p_attribute_05=>'PLAIN'
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(79121257836884893)
+,p_name=>'Cancelar'
+,p_event_sequence=>10
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_imp.id(79121222593884892)
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'click'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(79121436620884894)
+,p_event_id=>wwv_flow_imp.id(79121257836884893)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_DIALOG_CLOSE'
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(79121478574884895)
+,p_name=>'Borrar'
+,p_event_sequence=>20
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_imp.id(79121137112884891)
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'click'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(79121635761884896)
+,p_event_id=>wwv_flow_imp.id(79121478574884895)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_EXECUTE_PLSQL_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'    DELETE FROM ALAIN_INFORME',
+'    WHERE ID = :P310_ID_INFORME;',
+'',
+'    COMMIT;',
+'',
+'END;'))
+,p_attribute_05=>'PLSQL'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(79121824567884898)
+,p_event_id=>wwv_flow_imp.id(79121478574884895)
+,p_event_result=>'TRUE'
+,p_action_sequence=>20
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_DIALOG_CLOSE'
+);
+wwv_flow_imp.component_end;
+end;
+/
