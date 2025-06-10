@@ -1,0 +1,130 @@
+prompt --application/pages/page_00306
+begin
+--   Manifest
+--     PAGE: 00306
+--   Manifest End
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2023.10.31'
+,p_release=>'23.2.0'
+,p_default_workspace_id=>4319636551211844
+,p_default_application_id=>106
+,p_default_id_offset=>0
+,p_default_owner=>'DEMO_TRANS_WMS'
+);
+wwv_flow_imp_page.create_page(
+ p_id=>306
+,p_name=>'BorrarExpedicion'
+,p_alias=>'BORRAREXPEDICION'
+,p_page_mode=>'MODAL'
+,p_step_title=>'BorrarExpedicion'
+,p_autocomplete_on_off=>'OFF'
+,p_page_template_options=>'#DEFAULT#'
+,p_protection_level=>'C'
+,p_page_component_map=>'17'
+,p_last_updated_by=>'US_DEMO_TRANS_WMS'
+,p_last_upd_yyyymmddhh24miss=>'20250420130148'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(31780257415075310)
+,p_plug_name=>'BorrarExpedicion'
+,p_plug_display_sequence=>10
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(31780427044075312)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_imp.id(31780257415075310)
+,p_button_name=>'Borrar'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#:t-Button--stretch'
+,p_button_template_id=>wwv_flow_imp.id(25862321411209972)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Borrar'
+,p_warn_on_unsaved_changes=>null
+,p_grid_new_row=>'Y'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(31780588901075313)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_imp.id(31780257415075310)
+,p_button_name=>'Cancelar'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#:t-Button--stretch'
+,p_button_template_id=>wwv_flow_imp.id(25862321411209972)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Cancelar'
+,p_warn_on_unsaved_changes=>null
+,p_grid_new_row=>'N'
+,p_grid_new_column=>'Y'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(31780376822075311)
+,p_name=>'P306_ID_EXPEDICION'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_imp.id(31780257415075310)
+,p_prompt=>'Id Expedicion'
+,p_display_as=>'NATIVE_DISPLAY_ONLY'
+,p_field_template=>wwv_flow_imp.id(25859895548209970)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'VALUE'
+,p_attribute_04=>'Y'
+,p_attribute_05=>'PLAIN'
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(31780608652075314)
+,p_name=>'Cancelar'
+,p_event_sequence=>10
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_imp.id(31780588901075313)
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'click'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(31780769449075315)
+,p_event_id=>wwv_flow_imp.id(31780608652075314)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_DIALOG_CLOSE'
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(31780874254075316)
+,p_name=>'Borrar'
+,p_event_sequence=>20
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_imp.id(31780427044075312)
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'click'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(31781025805075318)
+,p_event_id=>wwv_flow_imp.id(31780874254075316)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_name=>'Borrar'
+,p_action=>'NATIVE_EXECUTE_PLSQL_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'    DELETE FROM ALAIN_EXPEDICION',
+'    WHERE ID = :P306_ID_EXPEDICION;',
+'    COMMIT;',
+'END;'))
+,p_attribute_05=>'PLSQL'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(31780929399075317)
+,p_event_id=>wwv_flow_imp.id(31780874254075316)
+,p_event_result=>'TRUE'
+,p_action_sequence=>20
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_DIALOG_CLOSE'
+);
+wwv_flow_imp.component_end;
+end;
+/
